@@ -1,5 +1,23 @@
 #include "RSA.c"
 
+int hex_to_int(char c)
+{
+    if (c >= 97)
+        c = c - 32;
+    int first = c / 16 - 3;
+    int second = c % 16;
+    int result = first * 10 + second;
+    if (result > 9) result--;
+    return result;
+}
+
+int hex_to_ascii(const char c, const char d)
+{
+	int high = hex_to_int(c) * 16;
+	int low = hex_to_int(d);
+	return high+low;
+}
+
 void printBN(char *msg, BIGNUM *a)
 {
     /* Use BN_bn2hex(a) for hex string
