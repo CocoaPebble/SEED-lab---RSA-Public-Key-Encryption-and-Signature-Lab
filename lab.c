@@ -7,15 +7,16 @@ int hex_to_int(char c)
     int first = c / 16 - 3;
     int second = c % 16;
     int result = first * 10 + second;
-    if (result > 9) result--;
+    if (result > 9)
+        result--;
     return result;
 }
 
 int hex_to_ascii(const char c, const char d)
 {
-	int high = hex_to_int(c) * 16;
-	int low = hex_to_int(d);
-	return high+low;
+    int high = hex_to_int(c) * 16;
+    int low = hex_to_int(d);
+    return high + low;
 }
 
 void printBN(char *msg, BIGNUM *a)
@@ -27,22 +28,24 @@ void printBN(char *msg, BIGNUM *a)
     OPENSSL_free(number_str);
 }
 
-void printHX(const char* st)
+void printHX(const char *st)
 {
-	int length = strlen(st);
-	if (length % 2 != 0) {
-		printf("%s\n", "invalid hex length");
-		return;
-	}
-	int i;
-	char buf = 0;
-	for(i = 0; i < length; i++) {
-		if(i % 2 != 0)
-			printf("%c", hex_to_ascii(buf, st[i]));
-		else
-		    buf = st[i];
-	}
-	printf("\n");
+    int length = strlen(st);
+    if (length % 2 != 0)
+    {
+        printf("%s\n", "invalid hex length");
+        return;
+    }
+    int i;
+    char buf = 0;
+    for (i = 0; i < length; i++)
+    {
+        if (i % 2 != 0)
+            printf("%c", hex_to_ascii(buf, st[i]));
+        else
+            buf = st[i];
+    }
+    printf("\n");
 }
 
 int main()
@@ -148,7 +151,7 @@ int main()
     BIGNUM *decrypted_signature = rsa_decrypt(S, modulus_e, alice_public_key_n);
     printf("Decrypted signature in task 5 is: ");
     printHX(BN_bn2hex(decrypted_signature));
-
+    printf("\n");
     // corrupted signature S' = 643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F
     BIGNUM *S2 = BN_new();
     BN_hex2bn(&S2, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F");
@@ -165,18 +168,18 @@ int main()
 
     // extracted the public key and modulus from the certificate at example.com
     // pub key
-    BIGNUM *pub_key_task_7 = BN_new();
-    BN_hex2bn(&pub_key_task_7, "B6E02FC22406C86D045FD7EF0A6406B27D22266516AE42409BCEDC9F9F76073EC330558719B94F940E5A941F5556B4C2022AAFD098EE0B40D7C4D03B72C8149EEF90B111A9AED2C8B8433AD90B0BD5D595F540AFC81DED4D9C5F57B786506899F58ADAD2C7051FA897C9DCA4B182842DC6ADA59CC71982A6850F5E44582A378FFD35F10B0827325AF5BB8B9EA4BD51D027E2DD3B4233A30528C4BB28CC9AAC2B230D78C67BE65E71B74A3E08FB81B71616A19D23124DE5D79208AC75A49CBACD17B21E4435657F532539D11C0A9A631B199274680A37C2C25248CB395AA2B6E15DC1DDA020B821A293266F144A2141C7ED6D9BF2482FF303F5A26892532F5EE3");
+    BIGNUM *pub_key_task_6 = BN_new();
+    BN_hex2bn(&pub_key_task_6, "B6E02FC22406C86D045FD7EF0A6406B27D22266516AE42409BCEDC9F9F76073EC330558719B94F940E5A941F5556B4C2022AAFD098EE0B40D7C4D03B72C8149EEF90B111A9AED2C8B8433AD90B0BD5D595F540AFC81DED4D9C5F57B786506899F58ADAD2C7051FA897C9DCA4B182842DC6ADA59CC71982A6850F5E44582A378FFD35F10B0827325AF5BB8B9EA4BD51D027E2DD3B4233A30528C4BB28CC9AAC2B230D78C67BE65E71B74A3E08FB81B71616A19D23124DE5D79208AC75A49CBACD17B21E4435657F532539D11C0A9A631B199274680A37C2C25248CB395AA2B6E15DC1DDA020B821A293266F144A2141C7ED6D9BF2482FF303F5A26892532F5EE3");
     // modulus
-    BIGNUM *modulus_task_7 = modulus_e;
+    BIGNUM *modulus_task_6 = modulus_e;
 
     // signature
-    BIGNUM *signature_task_7 = BN_new();
-    BN_hex2bn(&signature_task_7, "84a89a11a7d8bd0b267e52247bb2559dea30895108876fa9ed10ea5b3e0bc72d47044edd4537c7cabc387fb66a1c65426a73742e5a9785d0cc92e22e3889d90d69fa1b9bf0c16232654f3d98dbdad666da2a5656e31133ece0a5154cea7549f45def15f5121ce6f8fc9b04214bcf63e77cfcaadcfa43d0c0bbf289ea916dcb858e6a9fc8f994bf553d4282384d08a4a70ed3654d3361900d3f80bf823e11cb8f3fce7994691bf2da4bc897b811436d6a2532b9b2ea2262860da3727d4fea573c653b2f2773fc7c16fb0d03a40aed01aba423c68d5f8a21154292c034a220858858988919b11e20ed13205c045564ce9db365fdf68f5e99392115e271aa6a8882");
+    BIGNUM *signature_task_6 = BN_new();
+    BN_hex2bn(&signature_task_6, "84a89a11a7d8bd0b267e52247bb2559dea30895108876fa9ed10ea5b3e0bc72d47044edd4537c7cabc387fb66a1c65426a73742e5a9785d0cc92e22e3889d90d69fa1b9bf0c16232654f3d98dbdad666da2a5656e31133ece0a5154cea7549f45def15f5121ce6f8fc9b04214bcf63e77cfcaadcfa43d0c0bbf289ea916dcb858e6a9fc8f994bf553d4282384d08a4a70ed3654d3361900d3f80bf823e11cb8f3fce7994691bf2da4bc897b811436d6a2532b9b2ea2262860da3727d4fea573c653b2f2773fc7c16fb0d03a40aed01aba423c68d5f8a21154292c034a220858858988919b11e20ed13205c045564ce9db365fdf68f5e99392115e271aa6a8882");
 
     // decrypt the signature using the public key and modulus given from the certificate
-    BIGNUM *decrypted_signature_task_7 = rsa_decrypt(signature_task_7, modulus_task_7, pub_key_task_7);
-    printBN("Decrypted signature in task 7 is: ", decrypted_signature_task_7);
+    BIGNUM *decrypted_signature_task_6 = rsa_decrypt(signature_task_6, modulus_task_6, pub_key_task_6);
+    printBN("Decrypted signature in task 6 is: ", decrypted_signature_task_6);
     printf("\n");
 
     printf("the pre-computed hash was: ");
