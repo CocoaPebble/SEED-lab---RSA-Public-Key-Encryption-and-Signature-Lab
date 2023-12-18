@@ -59,7 +59,7 @@ int main()
 
     // Decrypt the message using RSA
     BIGNUM *decrypted_message_task3 = rsa_decrypt(ciphertext, private_key_d, public_key_n);
-    printBN("Decrypted Message in task 3 is: ");
+    printf("Decrypted Message in task 3 is: ");
     printHX(BN_bn2hex(decrypted_message_task3));
     printf("\n");
 
@@ -79,8 +79,8 @@ int main()
     // Modify the message to "I owe you $3000.", convert to hex, then convert to BIGNUM
     BIGNUM *message_task4_modified = BN_new();
     BN_hex2bn(&message_task4_modified, "49206F776520796F752024333030302E");
-    BIGNUM *encrypted_message_task4 = rsa_encrypt(message_task4_modified, private_key_d, public_key_n);
-    printBN("Signature modified in task 4 is: ", encrypted_message_task4);
+    BIGNUM *modified_encrypted_message_task4 = rsa_encrypt(message_task4_modified, private_key_d, public_key_n);
+    printBN("Signature modified in task 4 is: ", modified_encrypted_message_task4);
 
     printf("\n");
 
