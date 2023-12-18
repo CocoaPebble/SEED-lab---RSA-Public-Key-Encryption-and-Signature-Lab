@@ -146,14 +146,14 @@ int main()
     BIGNUM *decrypted_signature = rsa_decrypt(S, modulus_e, alice_public_key_n);
     printf("Decrypted signature in task 5 is: ");
     printHX(BN_bn2hex(decrypted_signature));
-    printf("\n");
+    
     // corrupted signature S' = 643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F
-    BIGNUM *S2 = BN_new();
-    BN_hex2bn(&S2, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F");
+    // BIGNUM *S2 = BN_new();
+    // BN_hex2bn(&S2, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F");
     // Decrypt the signature using RSA
-    BIGNUM *decrypted_signature2 = rsa_decrypt(S2, modulus_e, alice_public_key_n);
-    printf("Corrputed signature in task 5 is: ");
-    printHX(BN_bn2hex(decrypted_signature2));
+    // BIGNUM *decrypted_signature2 = rsa_decrypt(S2, modulus_e, alice_public_key_n);
+    // printf("Corrputed signature in task 5 is: ");
+    // printHX(BN_bn2hex(decrypted_signature2));
 
     printf("\n");
 
