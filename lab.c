@@ -36,14 +36,9 @@ void printHX(const char *st)
         printf("%s\n", "invalid hex length");
         return;
     }
-    int i;
-    char buf = 0;
-    for (i = 0; i < length; i++)
+    for (int i = 0; i < length; i += 2)
     {
-        if (i % 2 != 0)
-            printf("%c", hex_to_ascii(buf, st[i]));
-        else
-            buf = st[i];
+        printf("%c", hex_to_ascii(st[i], st[i + 1]));
     }
     printf("\n");
 }
