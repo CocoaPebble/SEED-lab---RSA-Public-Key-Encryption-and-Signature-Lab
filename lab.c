@@ -9,6 +9,24 @@ void printBN(char *msg, BIGNUM *a)
     OPENSSL_free(number_str);
 }
 
+void printHX(const char* st)
+{
+	int length = strlen(st);
+	if (length % 2 != 0) {
+		printf("%s\n", "invalid hex length");
+		return;
+	}
+	int i;
+	char buf = 0;
+	for(i = 0; i < length; i++) {
+		if(i % 2 != 0)
+			printf("%c", hex_to_ascii(buf, st[i]));
+		else
+		    buf = st[i];
+	}
+	printf("\n");
+}
+
 int main()
 {
     /*
